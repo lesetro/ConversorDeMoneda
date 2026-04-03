@@ -1,19 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:padding="24dp"
     tools:context=".MainActivity">
 
+    <!-- Conversor De Moneda -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="Conversor de Moneda"
+        android:textColor="#264B28"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:emojiCompatEnabled="false" />
+
+    <!-- Campo Dólares -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Dólares:"
+        android:textColor="#333333"
+        android:textSize="16sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/etDolares"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Ingrese cantidad en USD"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textColor="#121111" />
+
+    <!-- Campo Euros -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Euros:"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/etEuros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="@android:drawable/editbox_background"
+        android:hint="Ingrese cantidad en EUR"
+        android:inputType="numberDecimal"
+        android:padding="12dp"
+        android:textColor="#231C1C" />
+
+    <!-- Sección Valor de conversión -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Valor de conversión:"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Muestra el tipo de cambio actual -->
+        <TextView
+            android:id="@+id/tvTipoCambio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="1$ = 0.92€"
+            android:textColor="#852727"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <!-- Botón para cambiar el tipo de cambio -->
+        <Button
+            android:id="@+id/btnCambiarValor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2196F3"
+            android:text="Cambiar valor"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <!-- RadioGroup para seleccionar tipo de conversión, facilita logica -->
+
+    <RadioGroup
+        android:id="@+id/rgConversion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/rbADolares"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:buttonTint="#AF9F18"
+            android:shadowColor="#9C27B0"
+            android:text="Convertir a Dólares"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textColor="#14151B"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+
+        <RadioButton
+            android:id="@+id/rbAEuros"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:text="Convertir a Euros"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="#180F0F"
+            android:textSize="16sp"
+            android:textStyle="bold|italic" />
+
+    </RadioGroup>
+
+    <!-- Botón Convertir -->
+    <Button
+        android:id="@+id/btnConvertir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4CAF50"
+        android:padding="12dp"
+        android:text="Convertir"
+        android:textSize="18sp" />
+
+</LinearLayout>

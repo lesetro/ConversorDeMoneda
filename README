@@ -1,0 +1,70 @@
+# Conversor de Moneda - Android MVVM
+
+## Descripción de la aplicación
+
+Aplicación móvil Android desarrollada en Java
+que permite convertir valores entre Dólares (USD) y Euros (EUR).
+
+### Funcionalidades:
+- Ingresar valores en Dólares o Euros
+- Seleccionar el tipo de conversión (a Dólares o a Euros) mediante RadioButtons
+- Visualizar el resultado de la conversión
+- Ver el tipo de cambio actual (1 USD = X EUR)
+- Modificar el tipo de cambio con el botón "Cambiar valor"
+- Validación de entradas numéricas
+- Manejo de errores (campos vacíos, valores inválidos)
+
+
+## Trabajo Practico N° 1
+
+Troncoso Leandro Sebastian 34966673
+
+## Implementación del patrón MVVM
+
+El proyecto está estructurado en tres capas separadas:
+
+### 1. Model (`ConversorMoneda.java`)
+- **Ubicación:** `model/ConversorMoneda.java`
+- **Responsabilidad:** Contiene la lógica de negocio pura para la conversión de monedas.
+- **Contenido:**
+  - Almacena el tipo de cambio actual
+  - Método `convertirAEuros()`: convierte USD a EUR
+  - Método `convertirADolares()`: convierte EUR a USD
+  - Getters y setters para el tipo de cambio
+
+### 2. ViewModel (`MonedaViewModel.java`)
+- **Ubicación:** `viewmodel/MonedaViewModel.java`
+- **Responsabilidad:** Actúa como intermediario entre el Model y la View.
+    Expone datos observables mediante LiveData.
+
+- **Contenido:**
+  - `LiveData<String> resultadoDolares`: resultado en dólares (observable)
+  - `LiveData<String> resultadoEuros`: resultado en euros (observable)
+  - `LiveData<String> textoTipoCambio`: texto del tipo de cambio (observable)
+  - `LiveData<String> mensajeError`: mensajes de error (observable)
+  - Método `convertir()`: valida entrada y ejecuta conversión
+  - Método `cambiarTipoCambio()`: actualiza el tipo de cambio
+
+### 3. View (`MainActivity.java` + `activity_main.xml`)
+- **Ubicación:** `MainActivity.java` y `res/layout/activity_main.xml`
+- **Responsabilidad:** Maneja únicamente la interfaz gráfica. NO contiene lógica de negocio.
+- **Características:**
+  - Observa los `LiveData` del ViewModel usando el método `observe()`
+  - Actualiza la UI automáticamente cuando los datos cambian
+  - Delega todas las operaciones al ViewModel
+
+
+1. El usuario ingresa un valor y presiona "Convertir"
+2. La View captura el evento y llama a `viewModel.convertir()`
+3. El ViewModel valida la entrada y usa el Model para calcular
+4. El ViewModel actualiza los LiveData con los resultados
+5. La View, que observa los LiveData, actualiza la UI automáticamente
+
+
+
+## Tecnologías utilizadas
+
+- Android SDK
+- Java
+- ViewModel y LiveData (Android Architecture Components)
+- Patrón de arquitectura MVVM
